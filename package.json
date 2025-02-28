@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "jest": "^29.7.0"
+  },
+  "name": "ebac-prog-javascript",
+  "description": "Exercício do módulo 20 - Programando com Javascript.",
+  "version": "1.0.0",
+  "main": "exercicio-1.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
