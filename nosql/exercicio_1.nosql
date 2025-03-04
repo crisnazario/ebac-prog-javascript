@@ -1,0 +1,91 @@
+
+// Faça uma busca de quantos livros não estão com o status publicado e pageCount menor que 300
+
+db.biblioteca.find(
+    {
+        status: { $ne: "PUBLISH" },
+        pageCount: { $lte: 300 }
+    },
+    { title: true, _id: true, pageCount: true }
+)
+.sort({ pageCount: 1 })
+
+
+// Faça uma busca de livros que contém as palavras MongoDB e SQL Server no título
+db.biblioteca.find(
+    {
+        $or: [
+            { title: { $regex: /MongoDB/ } },
+            { title: { $regex: /SQL Server/ } }
+        ]
+    },
+    { title: true, _id: true }
+)
+
+// Faça uma busca com expressão regular onde ISBN começa com 18 
+db.biblioteca.find(
+    {
+        $or: [
+            { isbn: { $regex: /^18/ } }
+
+        ]
+    },
+    { title: true, _id: true, isbn: true }
+)
+
+//- Usando Expressão Regular, busque livros que contém a palavra JAVA ou Mobile na descrição do livro (LongDescription), lembrando que deve trazer todas as palavras independente de começa com maiúsculo ou minúsculo 
+
+db.biblioteca.find(
+    {
+        $or: [
+            { longDescription: { $regex: /JAVA/, $options: "i" } },
+            { longDescription: { $regex: /Mobile/, $options: "i" } }
+        ]
+    },
+    { longDescription: true, _id: true }
+)
+
+// ------------------------------------------------------
+
+// Exercicio 2
+
+db.biblioteca.find(
+    {
+        status: { $ne: "PUBLISH" },
+        pageCount: { $lte: 300 }
+    },
+    { title: true, _id: true, pageCount: true }
+)
+.count()
+
+
+db.biblioteca.find(
+    {
+        $or: [
+            { title: { $regex: /MongoDB/ } },
+            { title: { $regex: /SQL Server/ } }
+        ]
+    },
+    { title: true, _id: true }
+).count()
+
+
+db.biblioteca.find(
+    {
+        $or: [
+            { isbn: { $regex: /^18/ } }
+
+        ]
+    },
+    { title: true, _id: true, isbn: true }
+).count()
+
+db.biblioteca.find(
+    {
+        $or: [
+            { longDescription: { $regex: /JAVA/, $options: "i" } },
+            { longDescription: { $regex: /Mobile/, $options: "i" } }
+        ]
+    },
+    { longDescription: true, _id: true }
+).count()
